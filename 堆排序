@@ -1,0 +1,45 @@
+堆排序是利用 堆进行排序的
+堆是一种完全二叉树
+堆有两种类型: 大根堆 小根堆
+两种类型的概念如下：
+大根堆：每个结点的值都大于或等于左右孩子结点
+小根堆：每个结点的值都小于或等于左右孩子结点
+
+完全二叉树 是 一种除了最后一层之外的其他每一层都被完全填充，并且所有结点都保持向左对齐的树
+
+堆排序的思想(以大根堆为例)：
+
+首先将待排序的数组构造出一个大根堆
+取出这个大根堆的堆顶节点(最大值)，与堆的最下最右的元素进行交换，然后把剩下的元素再构造出一个大根堆
+重复第二步，直到这个大根堆的长度为1，此时完成排序。
+
+作者：一根薯条
+链接：https://www.jianshu.com/p/d174f1862601
+来源：简书
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+def heap_sort(nums):
+    if not nums or len(nums) <= 1:
+        return nums
+    n = len(nums)
+    #构建大顶堆
+    for i in range((n-2)//2, -1, -1):
+        heap_adjust(nums, i, n-1)
+    #交换收尾元素，并调整大顶堆
+    for i in range(n-1, 1, -1):
+        nums[0], nums[i] == nums[i], nums[0]
+        heap_adjust(nums, 0, i-1)
+    return nums
+
+def heap_adjust(nums, s, l):
+    while True:
+        child = 2*s+1
+        if child > l:
+            break
+        if child < l and nums[child] < nums[child+1]:
+            child = child + 1
+        if nums[s] < nums[child]:
+            nums[s], nums[child] = nums[child], nums[s]
+            s = child
+        else:
+            break
