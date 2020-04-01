@@ -26,3 +26,36 @@ def merge(left, right):
     if right:
         result = result + right
     return result
+
+############################
+非递归
+
+    def merge2(self, nums, low, mid, high):
+        result = []
+        left = nums[low:mid]
+        right = nums[mid:high]
+        while left and right:
+            if left[0] <= right[0]:
+                result.append(left.pop(0))
+            else:
+                result.append(right.pop(0))
+        if left:
+            result = result + left
+        if right:
+            result = result + right
+        nums[low:high] = result
+
+
+    def merge_sort2(self, nums):
+        length = len(nums)
+        i = 1 #步长
+        while i < length:
+            low = 0
+            while low < length:
+                mid = low + i
+                high = min(low + 2*i, length)
+                if mid < high:
+                    self.merge2(nums, low, mid, high)
+                low += 2*i
+            i = 2*i
+        return nums
