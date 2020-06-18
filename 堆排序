@@ -21,7 +21,7 @@ def heap_sort(nums):
     #构建大顶堆
     for i in range((n-2)//2, -1, -1):
         heap_adjust(nums, i, n-1)
-    #交换收尾元素，并调整大顶堆
+    #交换首尾元素，并调整大顶堆
     for i in range(n-1, 1, -1):
         nums[0], nums[i] == nums[i], nums[0]
         heap_adjust(nums, 0, i-1)
